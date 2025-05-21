@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Translator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo" class="logo">
+            <h1>Telegram Translator</h1>
+        </div>
+        
+        <div class="language-selector">
+            <select id="source-language">
+                <option value="auto">Определить язык</option>
+                <option value="en">Английский</option>
+                <option value="ru">Русский</option>
+                <option value="es">Испанский</option>
+                <option value="fr">Французский</option>
+                <option value="de">Немецкий</option>
+                <option value="it">Итальянский</option>
+                <option value="pt">Португальский</option>
+                <option value="zh">Китайский</option>
+                <option value="ja">Японский</option>
+            </select>
+            
+            <button class="swap-btn" id="swap-languages">⇄</button>
+            
+            <select id="target-language">
+                <option value="ru">Русский</option>
+                <option value="en">Английский</option>
+                <option value="es">Испанский</option>
+                <option value="fr">Французский</option>
+                <option value="de">Немецкий</option>
+                <option value="it">Итальянский</option>
+                <option value="pt">Португальский</option>
+                <option value="zh">Китайский</option>
+                <option value="ja">Японский</option>
+            </select>
+        </div>
+        
+        <div class="text-box">
+            <textarea id="source-text" placeholder="Введите текст для перевода..." autofocus></textarea>
+            <div class="translation" id="translation-result">Перевод появится здесь...</div>
+        </div>
+        
+        <div class="controls">
+            <button id="translate-btn">Перевести</button>
+            <button class="copy-btn" id="copy-btn">Копировать</button>
+        </div>
+
+        <div class="api-status" id="api-status"></div>
+    </div>
+
+    <script src="./js/translator.js"></script>
+</body>
+</html>
