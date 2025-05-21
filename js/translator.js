@@ -1,6 +1,5 @@
-
-const API_URL = 'https://api.mymemory.translated.net/get';
-const MAX_TEXT_LENGTH = 500;
+const API_URL = 'http://95.142.42.149:5000/translate';
+const MAX_TEXT_LENGTH = 5000;
 
 const elements = {
     sourceText: document.getElementById('source-text'),
@@ -12,7 +11,6 @@ const elements = {
     targetLanguage: document.getElementById('target-language')
 };
 
-
 async function translateText(text, sourceLang, targetLang) {
     if (!text.trim()) return '';
     
@@ -21,19 +19,22 @@ async function translateText(text, sourceLang, targetLang) {
     }
 
     try {
-        const response = await fetch(
-            `${API_URL}?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`
-        );
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                q: text,
+                source: sourceLang,
+                target: targetLang
+            }),
+            headers: { "Content-Type": "application/json" }
+        });
         
         if (!response.ok) {
             throw new Error('Ошибка сети');
         }
         
         const data = await response.json();
-        
-        return data.responseData?.translatedText || 
-               data.matches?.[0]?.translation || 
-               'Перевод не найден';
+        return data.translatedText || 'Перевод не найден';
     } catch (error) {
         console.error('Ошибка перевода:', error);
         throw new Error('Сервис перевода временно недоступен');
@@ -81,7 +82,6 @@ function swapLanguages() {
 }
 
 function init() {
-
     elements.translateBtn.addEventListener('click', handleTranslation);
     elements.copyBtn.addEventListener('click', handleCopy);
     elements.swapBtn.addEventListener('click', swapLanguages);
