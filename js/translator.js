@@ -1,4 +1,4 @@
-const API_URL = 'https://ru.libretranslate.com/';
+const API_URL = 'https://ru.libretranslate.com/translate';
 const MAX_TEXT_LENGTH = 5000;
 
 const elements = {
